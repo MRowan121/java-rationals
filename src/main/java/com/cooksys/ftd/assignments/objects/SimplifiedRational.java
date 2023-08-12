@@ -64,8 +64,14 @@ public class SimplifiedRational implements IRational {
         if (denominator == 0) {
             throw new IllegalArgumentException();
         }
-        this.numerator = numerator;
-        this.denominator = denominator;
+        if (numerator == 0) {
+            this.numerator = 0;
+            this.denominator = 1;
+        } else {
+            int gcd = gcd(Math.abs(numerator), Math.abs(denominator));
+            this.numerator = numerator/gcd;
+            this.denominator = denominator/gcd;
+        }
     }
 
     /**
